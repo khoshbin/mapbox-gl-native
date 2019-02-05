@@ -1,12 +1,17 @@
 package com.mapbox.mapboxsdk.module.telemetry;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.mapbox.android.telemetry.Event;
 
 import android.os.Bundle;
 import android.os.Parcel;
 
+
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 /**
@@ -14,7 +19,7 @@ import java.util.Locale;
  * Customer measurements can be added to the bundle.
  */
 public class PerformanceEvent extends Event {
-  private static final String PERFORMANCE_TRACE = "performance.trace";
+  private static final String PERFORMANCE_TRACE = "mobile_performance_trace";
 
   private final String event;
 
@@ -22,24 +27,38 @@ public class PerformanceEvent extends Event {
 
   private final String sessionId;
 
-  private final Bundle data;
+  private final List<Attribute<String>> attributes;
+
+  private final List<Attribute<? extends Number>> counters;
 
   private static final SimpleDateFormat DATE_FORMAT =
           new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", Locale.US);
 
-  PerformanceEvent(String sessionId, Bundle data) {
+  PerformanceEvent(String sessionId, Bundle bundle)  {
+
     this.event = PERFORMANCE_TRACE;
     this.created = DATE_FORMAT.format(new Date());
     this.sessionId = sessionId;
-    this.data = data;
+
+    Gson gson = new Gson();
+    this.attributes = gson.fromJson(bundle.getString("attributes"),
+            new TypeToken<ArrayList<Attribute<String>>>() {}.getType());
+    this.counters = gson.fromJson(bundle.getString("counters"),
+            new TypeToken<ArrayList<Attribute<? extends Number>>>() {}.getType());
   }
 
   private PerformanceEvent(Parcel in) {
     this.event = in.readString();
     this.created = in.readString();
     this.sessionId = in.readString();
-    this.data = in.readBundle();
+
+    Gson gson = new Gson();
+    this.attributes = gson.fromJson(in.readString(),
+            new TypeToken<ArrayList<Attribute<String>>>() {}.getType());
+    this.counters = gson.fromJson(in.readString(),
+            new TypeToken<ArrayList<Attribute<? extends Number>>>() {}.getType());
   }
+
 
   @Override
   public int describeContents() {
@@ -51,7 +70,10 @@ public class PerformanceEvent extends Event {
     parcel.writeString(event);
     parcel.writeString(created);
     parcel.writeString(sessionId);
-    parcel.writeBundle(data);
+
+    Gson gson = new Gson();
+    parcel.writeString(gson.toJson(attributes));
+    parcel.writeString( gson.toJson(counters));
   }
 
   public static final Creator<PerformanceEvent> CREATOR = new Creator<PerformanceEvent>() {
@@ -65,4 +87,16 @@ public class PerformanceEvent extends Event {
       return new PerformanceEvent[size];
     }
   };
+
+  class Attribute <T> {
+    private final String name;
+    private final T value;
+
+    Attribute(String name, T value) {
+      this.name = name;
+      this.value = value;
+    }
+  }
+
+
 }

@@ -112,7 +112,8 @@ public class TelemetryImpl implements TelemetryDefinition {
   @Override
   public void onPerformanceEvent(Bundle data) {
     if (data != null && !data.isEmpty()) {
-      telemetry.push(new PerformanceEvent(UUID.randomUUID().toString(), data));
+      telemetry.push(new PerformanceEvent(UUID.randomUUID().toString(),
+              data));
     }
   }
 }
