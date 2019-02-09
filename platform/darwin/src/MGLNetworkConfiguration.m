@@ -1,4 +1,10 @@
-#import "MGLNetworkConfiguration.h"
+#import "MGLNetworkConfiguration_Private.h"
+
+@interface MGLNetworkConfiguration ()
+
+@property (strong) NSURLSessionConfiguration *sessionConfig;
+
+@end
 
 @implementation MGLNetworkConfiguration
 
@@ -16,10 +22,12 @@
     void (^setupBlock)(void) = ^{
         dispatch_once(&onceToken, ^{
             _sharedManager = [[self alloc] init];
+            _sharedManager.sessionConfiguration = nil;
         });
     };
     if (![[NSThread currentThread] isMainThread]) {
-        dispatch_sync(dispatch_get_main_queue(), ^{
+        // This is a temporary fix to avoid a dead lock
+        dispatch_async(dispatch_get_main_queue(), ^{
             setupBlock();
         });
     } else {
@@ -34,6 +42,35 @@
 
 + (NSURL *)apiBaseURL {
     return [MGLNetworkConfiguration sharedManager].apiBaseURL;
+}
+
+- (void)setSessionConfiguration:(NSURLSessionConfiguration *)sessionConfiguration {
+    @synchronized (self) {
+        if (sessionConfiguration == nil) {
+            _sessionConfig = [self defaultSessionConfiguration];
+        } else {
+            _sessionConfig = sessionConfiguration;
+        }
+    }
+}
+
+- (NSURLSessionConfiguration *)sessionConfiguration {
+    NSURLSessionConfiguration *sessionConfig = nil;
+    @synchronized (self) {
+        sessionConfig = _sessionConfig;
+    }
+    return sessionConfig;
+}
+
+- (NSURLSessionConfiguration *)defaultSessionConfiguration {
+    NSURLSessionConfiguration* sessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    
+    sessionConfiguration.timeoutIntervalForResource = 30;
+    sessionConfiguration.HTTPMaximumConnectionsPerHost = 8;
+    sessionConfiguration.requestCachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
+    sessionConfiguration.URLCache = nil;
+    
+    return sessionConfiguration;
 }
 
 @end

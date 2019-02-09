@@ -3,7 +3,7 @@
 #import "MGLFoundation_Private.h"
 #import "MGLAccountManager_Private.h"
 #import "MGLGeometry_Private.h"
-#import "MGLNetworkConfiguration.h"
+#import "MGLNetworkConfiguration_Private.h"
 #import "MGLOfflinePack_Private.h"
 #import "MGLOfflineRegion_Private.h"
 #import "MGLTilePyramidOfflineRegion.h"

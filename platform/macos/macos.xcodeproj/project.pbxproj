@@ -22,6 +22,7 @@
 		1F7454A41ECFB00300021D39 /* MGLLight.h in Headers */ = {isa = PBXBuildFile; fileRef = 1F7454A11ECFB00300021D39 /* MGLLight.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1F7454A51ECFB00300021D39 /* MGLLight.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1F7454A21ECFB00300021D39 /* MGLLight.mm */; };
 		1F7454AB1ED1DDBD00021D39 /* MGLLightTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1F7454AA1ED1DDBD00021D39 /* MGLLightTest.mm */; };
+		1F8A0801220E573800B9B255 /* MGLNetworkConfiguration_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 1F8A0800220E573800B9B255 /* MGLNetworkConfiguration_Private.h */; };
 		1F8A59FA21653483004DFE75 /* sideload_sat.db in Resources */ = {isa = PBXBuildFile; fileRef = 1F8A59F921653483004DFE75 /* sideload_sat.db */; };
 		1F8A5A04216D4696004DFE75 /* MGLLoggingConfiguration_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 1F8A5A01216D4695004DFE75 /* MGLLoggingConfiguration_Private.h */; };
 		1F8A5A05216D4696004DFE75 /* MGLLoggingConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F8A5A02216D4695004DFE75 /* MGLLoggingConfiguration.m */; };
@@ -283,7 +284,7 @@
 		DAF25716201901C200367EF5 /* MGLHillshadeStyleLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = DAF25714201901C200367EF5 /* MGLHillshadeStyleLayer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DAF25721201902C100367EF5 /* MGLHillshadeStyleLayerTests.mm in Sources */ = {isa = PBXBuildFile; fileRef = DAF2571D201902A500367EF5 /* MGLHillshadeStyleLayerTests.mm */; };
 		DD0902B21DB1AC6400C5BDCE /* MGLNetworkConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = DD0902AF1DB1AC6400C5BDCE /* MGLNetworkConfiguration.m */; };
-		DD0902B31DB1AC6400C5BDCE /* MGLNetworkConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = DD0902B01DB1AC6400C5BDCE /* MGLNetworkConfiguration.h */; };
+		DD0902B31DB1AC6400C5BDCE /* MGLNetworkConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = DD0902B01DB1AC6400C5BDCE /* MGLNetworkConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DD58A4C91D822C6700E1F038 /* MGLExpressionTests.mm in Sources */ = {isa = PBXBuildFile; fileRef = DD58A4C71D822C6200E1F038 /* MGLExpressionTests.mm */; };
 /* End PBXBuildFile section */
 
@@ -334,6 +335,7 @@
 		1F7454A11ECFB00300021D39 /* MGLLight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGLLight.h; sourceTree = "<group>"; };
 		1F7454A21ECFB00300021D39 /* MGLLight.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MGLLight.mm; sourceTree = "<group>"; };
 		1F7454AA1ED1DDBD00021D39 /* MGLLightTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MGLLightTest.mm; sourceTree = "<group>"; };
+		1F8A0800220E573800B9B255 /* MGLNetworkConfiguration_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGLNetworkConfiguration_Private.h; sourceTree = "<group>"; };
 		1F8A59F921653483004DFE75 /* sideload_sat.db */ = {isa = PBXFileReference; lastKnownFileType = file; name = sideload_sat.db; path = ../../../test/fixtures/offline_database/sideload_sat.db; sourceTree = "<group>"; };
 		1F8A5A01216D4695004DFE75 /* MGLLoggingConfiguration_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGLLoggingConfiguration_Private.h; sourceTree = "<group>"; };
 		1F8A5A02216D4695004DFE75 /* MGLLoggingConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGLLoggingConfiguration.m; sourceTree = "<group>"; };
@@ -1208,6 +1210,7 @@
 				92092EEE1F5EB10E00AF5130 /* MGLMapSnapshotter.h */,
 				92092EEF1F5EB10E00AF5130 /* MGLMapSnapshotter.mm */,
 				DD0902B01DB1AC6400C5BDCE /* MGLNetworkConfiguration.h */,
+				1F8A0800220E573800B9B255 /* MGLNetworkConfiguration_Private.h */,
 				DD0902AF1DB1AC6400C5BDCE /* MGLNetworkConfiguration.m */,
 				3EA9369A4C46957566058822 /* MGLRendererConfiguration.h */,
 				3EA93B1B0864609938506E12 /* MGLRendererConfiguration.mm */,
@@ -1326,6 +1329,7 @@
 				DAE6C3C21CC31F4500DB3429 /* Mapbox.h in Headers */,
 				DAE6C3641CC31E0400DB3429 /* MGLPolygon.h in Headers */,
 				DA35A2BF1CCA9B1A00E826B2 /* MGLClockDirectionFormatter.h in Headers */,
+				1F8A0801220E573800B9B255 /* MGLNetworkConfiguration_Private.h in Headers */,
 				35602BFA1D3EA99F0050646F /* MGLFillStyleLayer.h in Headers */,
 				DA35A2A41CC9EB1A00E826B2 /* MGLCoordinateFormatter.h in Headers */,
 				35C5D8491D6DD66D00E95907 /* NSCompoundPredicate+MGLAdditions.h in Headers */,
